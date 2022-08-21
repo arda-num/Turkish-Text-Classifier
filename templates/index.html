@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- CSS -->
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}">    
+
+        <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+        
+                      
+    </head>
+    <body>
+        <h1 class="header" style="text-align:center"> -Turkish Text Classifier-</h1><p><br>
+            <img src="../static/turk2.jpg" class="flag"> <br>
+    
+        <div class="ui segment" style="height: 62%;">
+            <div class="ui active inverted dimmer" style="visibility: hidden;" id="loader">
+              <div class="ui medium text loader">Loading</div>
+            </div>
+            <p></p>
+            <p></p>
+            
+        
+                <div class="ui segment">
+                    <div class="ui two column very relaxed grid">
+                        <div class="column">
+                        <h4 class="explain">Please write something in Turkish</h5><br>
+                        <form action="javascript:;" onsubmit="calculate()">
+                            <textarea id = "sentence" rows="5" cols="10" wrap="soft" class="area" maxlength="512"></textarea><br>
+                            <h5 class="explain">Please select a model to continue</h5><br>
+                            <select class="ui selection dropdown">
+                                <option value="">Select Model</option>
+                                <option value="1">Finetuned BERTTurk</option>
+                                <option value="0">BERTTurk</option>
+                            </select><br>
+                            <button class="ui red button" id="inp-btn" type="submit" value="Submit" >
+                                Submit
+                            </button>
+                            <div class="d-flex justify-content-center" style="visibility: hidden;" id="loader"><div class="spinner-border text-danger" role="status"><span class="sr-only">Loading...</span></div></div>
+                        </form>
+                        
+        
+        
+                        
+                        </div>
+                        <div class="column">
+        
+                            <h1 style="text-align: center;padding-top: 1%;">Results</h1>
+                    
+                            <div class="ui indicating progress" id="bilim_teknoloji">
+                                <div class="bar">
+                                    <div class="progress"></div>
+                                </div>
+                                <div class="label">Bilim Teknoloji</div>
+                            </div>
+        
+                            <div class="ui indicating progress" id="dunya">
+                                <div class="bar">
+                                    <div class="progress"></div>
+                                </div>
+                                <div class="label">Dünya</div>
+                            </div>
+        
+        
+                            <div class="ui indicating progress" id="egitim">
+                                <div class="bar">
+                                    <div class="progress"></div>
+                                </div>
+                                <div class="label">Eğitim</div>
+                            </div>
+        
+                            <div class="ui indicating progress" id="ekonomi">
+                                <div class="bar">
+                                    <div class="progress"></div>
+                                </div>
+                                <div class="label">Ekonomi</div>
+                            </div>
+        
+                            <div class="ui indicating progress" id="kultur_sanat">
+                                <div class="bar">
+                                    <div class="progress"></div>
+                                </div>
+                                <div class="label">Kültür Sanat</div>
+                            </div>
+        
+                            <div class="ui indicating progress" id="saglik">
+                                <div class="bar">
+                                    <div class="progress"></div>
+                                </div>
+                                <div class="label">Sağlık</div>
+                            </div>
+        
+                            <div class="ui indicating progress" id="spor">
+                                <div class="bar">
+                                    <div class="progress"></div>
+                                </div>
+                                <div class="label">Spor</div>
+                            </div><br>
+        
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+        </div>
+        
+
+        <script>
+
+            function progress(label,percentage){
+                $(document.getElementById(label)).progress({
+                percent:percentage});
+            }
+            window.onload = progress;            
+
+            var ws = new WebSocket("ws://localhost:8080/calculate");
+            function calculate(){
+                var input = document.getElementById("sentence").value
+                console.log(input)
+                ws.send(input)
+                input.value = ""
+                var button = document.getElementById("inp-btn");
+                button.style.visibility = "hidden"
+                var loader = document.getElementById("loader");
+                loader.style.visibility = "visible"
+                // button.outerHTML = '<div id="loader" class="d-flex justify-content-center"><div class="spinner-border text-danger" role="status"><span class="sr-only">Loading...</span></div></div>'
+                event.preventDefault()
+                ws.onmessage = function(event){
+
+                    const data = JSON.parse(event.data);
+
+                    for (const element of Object.entries(data)){
+                        console.log(element[0]);
+                        progress(element[0],element[1]);
+                    }
+                    var button = document.getElementById("inp-btn");
+                    button.style.visibility = "visible"
+                    var loader = document.getElementById("loader");
+                    loader.style.visibility = "hidden"
+                }
+            }
+
+        </script>
+    </body>
+</html>
