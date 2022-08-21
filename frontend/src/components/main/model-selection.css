@@ -1,0 +1,25 @@
+
+
+.model-section {
+    width: 200px;
+    height: 300px;
+    margin: 50px;
+    text-align: center;
+    
+}
+
+.model-section-text {
+    height: 300px;
+    width: 250px;
+    margin: 10px;
+    font-style:oblique;
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    /* font-weight: 1000; */
+    word-wrap: break-word;
+    text-transform: none;
+    /* background-color: ; */
+}
+
+.explanation {
+    text-align: left;
+}

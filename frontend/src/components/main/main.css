@@ -1,0 +1,51 @@
+.input-area {
+    zoom: 130%;
+}
+
+.input-section {
+    padding-bottom: 50px;
+}
+
+.stepper {
+    margin-left: 15%;
+    margin-right: 15%;
+    /* height: 85vh; */
+    /* padding-top: 60px; */
+    /* position: absolute; */
+}
+
+.submit-btn {
+    text-align: center;
+    margin-left: 20px;
+    
+}
+
+.random-inp {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.model-selection {
+    text-align: center;
+}
+
+
+.input-settings {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.inspiration {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    color:steelblue;
+    text-decoration:solid;
+}
+
+.navigation-buttons {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: -60px;
+}

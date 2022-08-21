@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Montserrat:wght@500&family=Oxygen&display=swap');
+
+
+.page {
+    margin-top: 60px;
+}
+
+.greeting-text {
+    text-align: center;
+    font-family: 'Cabin', sans-serif;  
+}
+
+
+.img-gif {
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 5%;
+    border: 2px solid black;
+}

@@ -1,8 +1,15 @@
-# Turkish-Text-Classifier-App
+# Turkish Text-Classifier Application
 
-![plot](./images/image.png)
+<a href="#"><img src="https://img.shields.io/badge/Docker-Available-blue?logo=docker&style=for-the-badge" /></a>
+<a href="#"><img src="https://img.shields.io/badge/React-v18.2.0-66c8d9?logo=react&style=for-the-badge" /></a>
+<a href="#"><img src="https://img.shields.io/badge/FastAPI-v0.79.0-63a871?logo=fastapi&style=for-the-badge" /></a>
+<a href="#"><img src="https://img.shields.io/badge/PyTorch-v1.12.0-red?logo=pytorch&style=for-the-badge" /></a>
+<a href="#"><img src="https://img.shields.io/badge/MYSQL-v8.0.30-blue?logo=mysql&style=for-the-badge" /></a>
 
-Tuskish Text Classifier application to determine the topic of the input string. The model itself is a fine-tuned version of the BERT model.
+
+![plot](./images/tca.png)
+
+Tuskish Text Classifier application to determine the topic of the input string. The model itself is a fine-tuned version of the BERT, Electra, DistilBERT.
 
 # How to run the app?
 
@@ -14,8 +21,14 @@ Tuskish Text Classifier application to determine the topic of the input string. 
 ```ruby
 docker-compose up --build
 ```
-- Navigate the following url in any web browser.
+- Wait until you see the initialization of the app.
 
 ```ruby
-http://0.0.0.0:8080/
+api_1 | INFO: Application startup complete.
+```
+
+- Navigate the following url in any web browser to reach the React app.
+
+```ruby
+http://localhost:3000/
 ```

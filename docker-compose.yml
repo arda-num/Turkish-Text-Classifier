@@ -2,10 +2,37 @@ version: '3.3'
 
 services:
 
+
   web:
+    build: ./frontend
+    container_name: react_app
+    ports:
+      - 3000:3000
+    # stdin_open: true
+    # tty: true
+    depends_on:
+      - api
+
+
+  api:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 8080:8080
-    command: uvicorn main:app --host 0.0.0.0 --port 8080 --reload
+      - 8000:8000
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: root
+    command: uvicorn main:app --port 8000 --host 0.0.0.0 --reload
+    depends_on:
+      - database
+
+
+  database:
+    container_name: mysqldb
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: root
