@@ -32,3 +32,8 @@ api_1 | INFO: Application startup complete.
 ```ruby
 http://localhost:3000/
 ```
+
+# Quick tour on application
+
+https://user-images.githubusercontent.com/78916039/185814942-8b1dec4b-4987-45a2-bc0f-3ef5d2cf20be.mp4
+
